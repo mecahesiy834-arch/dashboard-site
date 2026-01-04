@@ -26,6 +26,7 @@
             --warning: #ffc107;
             --danger: #dc3545;
             --info: #17a2b8;
+            --telegram-color: #0088cc;
             --gradient-start: #1a1a1a;
             --gradient-end: #2a2a2a;
         }
@@ -392,6 +393,80 @@
             font-weight: 600;
         }
         
+        .telegram-info {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(0, 136, 204, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 136, 204, 0.3);
+        }
+        
+        .telegram-info h3 {
+            color: var(--telegram-color);
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .telegram-info p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--telegram-color);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        
+        .telegram-btn:hover {
+            background: #006699;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 136, 204, 0.3);
+        }
+        
+        .telegram-icon {
+            width: 20px;
+            height: 20px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z'/%3E%3C/svg%3E") no-repeat center;
+            background-size: contain;
+        }
+        
+        .domain-info {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .domain-info p {
+            color: var(--info);
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .domain-info strong {
+            color: var(--text-primary);
+        }
+        
         @media (max-width: 768px) {
             .container {
                 max-width: 100%;
@@ -415,7 +490,6 @@
             }
         }
         
-        /* Стили для иконок (простые CSS иконки) */
         .icon {
             display: inline-block;
             width: 24px;
@@ -440,31 +514,55 @@
         .icon-leads {
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z'/%3E%3C/svg%3E");
         }
+        
+        .icon-telegram {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230088cc'%3E%3Cpath d='M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z'/%3E%3C/svg%3E");
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>INFINITY DASHBOARD</h1>
+            <h1>⚡️ INFINITY DASHBOARD</h1>
             <p>Панель управления лидами</p>
         </div>
         
         <div class="content">
             <!-- Форма входа -->
             <div id="loginForm" class="login-form active">
+                <div class="domain-info">
+                    <p>Домен: <strong>dashboard.qpon</strong></p>
+                </div>
+                
+                <div class="telegram-info">
+                    <h3><i class="icon icon-telegram"></i> Получите доступ в боте</h3>
+                    <p>Для получения логина и пароля обратитесь в Telegram-бота Infinity System. После оплаты домена вы получите учетные данные для входа.</p>
+                    <button onclick="window.open('https://t.me/YOUR_BOT_USERNAME', '_blank')" class="telegram-btn">
+                        <div class="telegram-icon"></div>
+                        <span>Получить логин и пароль</span>
+                    </button>
+                </div>
+                
                 <div class="form-group">
-                    <label for="username">Логин</label>
-                    <input type="text" id="username" placeholder="Введите ваш логин">
+                    <label for="username"><i class="icon icon-user"></i> Логин</label>
+                    <input type="text" id="username" placeholder="Введите логин из Telegram-бота" autocomplete="username">
                     <div id="usernameError" class="error">Неверный логин</div>
                 </div>
                 
                 <div class="form-group">
                     <label for="password">Пароль</label>
-                    <input type="password" id="password" placeholder="Введите ваш пароль">
+                    <input type="password" id="password" placeholder="Введите пароль из Telegram-бота" autocomplete="current-password">
                     <div id="passwordError" class="error">Неверный пароль</div>
                 </div>
                 
-                <button onclick="login()" class="btn">Войти в систему</button>
+                <button onclick="login()" class="btn">⚡️ Войти в систему</button>
+                
+                <div class="logout-btn" style="margin-top: 20px;">
+                    <p style="font-size: 12px; color: var(--text-muted); text-align: center;">
+                        Логин и пароль вы получите после оплаты домена в боте<br>
+                        Формат логина: <code>op_123456</code>
+                    </p>
+                </div>
             </div>
             
             <!-- Дашборд -->
@@ -474,6 +572,9 @@
                     <div class="user-details">
                         <h3 id="userName">Оператор</h3>
                         <p id="userLogin">Логин: admin</p>
+                        <p id="userDomain" style="font-size: 12px; color: var(--info); margin-top: 5px;">
+                            <strong>Домен:</strong> dashboard.qpon
+                        </p>
                     </div>
                 </div>
                 
@@ -535,61 +636,75 @@
     </div>
     
     <script>
-        // Примерные данные пользователей (в реальном проекте это должно быть на сервере)
-        const users = {
-            'admin_special': { 
-                password: 'special_password_123', 
-                name: 'Special Admin',
-                avatar: 'SA'
-            },
-            'op_123456': { 
-                password: 'password123', 
-                name: 'Оператор 1',
-                avatar: 'O1'
-            },
-            'op_654321': { 
-                password: 'password456', 
-                name: 'Оператор 2',
-                avatar: 'O2'
-            }
-        };
-        
         // Примерные данные лидов
-        const leads = [
+        const sampleLeads = [
             { id: '#001', name: 'Иван Иванов', phone: '+7 999 123-45-67', amount: '$150', status: 'paid', date: '01.01.2024' },
             { id: '#002', name: 'Петр Петров', phone: '+7 999 765-43-21', amount: '$200', status: 'pending', date: '01.01.2024' },
             { id: '#003', name: 'Сергей Сергеев', phone: '+7 999 111-22-33', amount: '$100', status: 'paid', date: '31.12.2023' },
             { id: '#004', name: 'Анна Андреева', phone: '+7 999 444-55-66', amount: '$300', status: 'paid', date: '30.12.2023' },
             { id: '#005', name: 'Мария Михайлова', phone: '+7 999 777-88-99', amount: '$250', status: 'pending', date: '29.12.2023' },
-            { id: '#006', name: 'Алексей Алексеев', phone: '+7 999 222-33-44', amount: '$180', status: 'paid', date: '28.12.2023' },
-            { id: '#007', name: 'Дмитрий Дмитриев', phone: '+7 999 555-66-77', amount: '$220', status: 'pending', date: '27.12.2023' }
+            { id: '#006', name: 'Алексей Алексеев', phone: '+7 999 222-33-44', amount: '$180', status: 'paid', date: '28.12.2023' }
         ];
         
+        // Проверка учетных данных (имитация - в реальности будет API запрос)
+        function validateCredentials(username, password) {
+            // Для демонстрации принимаем любой логин, начинающийся с op_
+            if (username && password && username.startsWith('op_')) {
+                return true;
+            }
+            // Также принимаем специальный логин для демо
+            if (username === 'admin_special' && password === 'special_password_123') {
+                return true;
+            }
+            return false;
+        }
+        
         function login() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
             
             // Сброс ошибок
             document.getElementById('usernameError').style.display = 'none';
             document.getElementById('passwordError').style.display = 'none';
             
-            // Проверка пользователя
-            if (!users[username]) {
+            // Валидация
+            if (!username) {
+                document.getElementById('usernameError').textContent = 'Введите логин';
                 document.getElementById('usernameError').style.display = 'block';
                 return;
             }
             
-            if (users[username].password !== password) {
+            if (!password) {
+                document.getElementById('passwordError').textContent = 'Введите пароль';
                 document.getElementById('passwordError').style.display = 'block';
                 return;
             }
             
-            // Успешный вход
+            // Проверка учетных данных
+            if (!validateCredentials(username, password)) {
+                document.getElementById('usernameError').textContent = 'Неверный логин или пароль';
+                document.getElementById('usernameError').style.display = 'block';
+                return;
+            }
+            
+            // Сохраняем данные сессии
             localStorage.setItem('loggedIn', 'true');
             localStorage.setItem('username', username);
-            localStorage.setItem('userName', users[username].name);
-            localStorage.setItem('userAvatar', users[username].avatar || username.charAt(0).toUpperCase());
+            localStorage.setItem('password', password);
             
+            // Генерируем имя пользователя
+            let userName = 'Оператор';
+            if (username.startsWith('op_')) {
+                const operatorNumber = username.substring(3, 9);
+                userName = `Оператор ${operatorNumber}`;
+            } else if (username === 'admin_special') {
+                userName = 'Special Admin';
+            }
+            
+            localStorage.setItem('userName', userName);
+            localStorage.setItem('userAvatar', username.charAt(0).toUpperCase());
+            
+            // Показываем панель
             showDashboard();
         }
         
@@ -618,14 +733,15 @@
         }
         
         function updateStats() {
-            const totalLeads = leads.length;
-            const activeLeads = leads.filter(lead => lead.status === 'paid').length;
-            const totalProfit = leads
+            // Для демонстрации генерируем случайные данные
+            const totalLeads = sampleLeads.length;
+            const activeLeads = sampleLeads.filter(lead => lead.status === 'paid').length;
+            const totalProfit = sampleLeads
                 .filter(lead => lead.status === 'paid')
                 .reduce((sum, lead) => sum + parseInt(lead.amount.replace('$', '')), 0);
-            const todayProfit = leads
-                .filter(lead => lead.status === 'paid' && lead.date === new Date().toLocaleDateString('ru-RU'))
-                .reduce((sum, lead) => sum + parseInt(lead.amount.replace('$', '')), 0);
+            
+            // Случайная прибыль за сегодня
+            const todayProfit = Math.floor(Math.random() * 200) + 50;
             
             document.getElementById('totalLeads').textContent = totalLeads;
             document.getElementById('activeLeads').textContent = activeLeads;
@@ -637,14 +753,7 @@
             const tbody = document.getElementById('leadsTableBody');
             tbody.innerHTML = '';
             
-            // Сортируем лиды по дате (новые сверху)
-            const sortedLeads = [...leads].sort((a, b) => {
-                const dateA = a.date.split('.').reverse().join('-');
-                const dateB = b.date.split('.').reverse().join('-');
-                return new Date(dateB) - new Date(dateA);
-            });
-            
-            sortedLeads.forEach(lead => {
+            sampleLeads.forEach(lead => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td><strong>${lead.id}</strong></td>
@@ -659,16 +768,25 @@
         }
         
         function refreshData() {
-            // Здесь будет запрос к серверу для обновления данных
-            alert('Данные обновлены!');
-            updateStats();
-            updateLeadsTable();
+            // Анимация обновления
+            const btn = event.target.closest('.action-btn');
+            if (btn) {
+                btn.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    btn.style.transform = '';
+                    updateStats();
+                    updateLeadsTable();
+                    
+                    // Показываем уведомление
+                    showNotification('Данные обновлены!', 'success');
+                }, 200);
+            }
         }
         
         function exportData() {
             const csvContent = "data:text/csv;charset=utf-8," 
                 + "ID,Имя,Телефон,Сумма,Статус,Дата\n"
-                + leads.map(lead => 
+                + sampleLeads.map(lead => 
                     `${lead.id},${lead.name},${lead.phone},${lead.amount},${lead.status === 'paid' ? 'Оплачено' : 'В обработке'},${lead.date}`
                 ).join("\n");
             
@@ -679,33 +797,99 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+            
+            showNotification('Экспорт завершен!', 'success');
         }
         
         function logout() {
-            localStorage.removeItem('loggedIn');
-            localStorage.removeItem('username');
-            localStorage.removeItem('userName');
-            localStorage.removeItem('userAvatar');
-            
-            document.getElementById('dashboard').classList.remove('active');
-            document.getElementById('loginForm').classList.add('active');
-            
-            // Очищаем поля
-            document.getElementById('username').value = '';
-            document.getElementById('password').value = '';
+            if (confirm('Вы уверены, что хотите выйти?')) {
+                localStorage.removeItem('loggedIn');
+                localStorage.removeItem('username');
+                localStorage.removeItem('password');
+                localStorage.removeItem('userName');
+                localStorage.removeItem('userAvatar');
+                
+                document.getElementById('dashboard').classList.remove('active');
+                document.getElementById('loginForm').classList.add('active');
+                
+                // Очищаем поля
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+                
+                showNotification('Вы вышли из системы', 'info');
+            }
         }
         
-        // Проверяем, есть ли сохраненная сессия
-        window.onload = function() {
+        function showNotification(message, type) {
+            // Создаем уведомление
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 25px;
+                background: ${type === 'success' ? 'var(--success)' : 'var(--info)'};
+                color: white;
+                border-radius: 10px;
+                z-index: 1000;
+                animation: slideIn 0.3s ease;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Удаляем через 3 секунды
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+        
+        // Проверяем сохраненную сессию при загрузке
+        window.addEventListener('DOMContentLoaded', function() {
+            // Добавляем стили для анимаций уведомлений
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Проверяем авторизацию
             if (localStorage.getItem('loggedIn') === 'true') {
                 showDashboard();
             }
-        };
-        
-        // Обработка нажатия Enter в полях ввода
-        document.getElementById('password').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                login();
+            
+            // Добавляем обработчики Enter
+            document.getElementById('password').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    login();
+                }
+            });
+            
+            document.getElementById('username').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    document.getElementById('password').focus();
+                }
+            });
+            
+            // Заменяем YOUR_BOT_USERNAME на реальный username
+            const telegramBtn = document.querySelector('.telegram-btn');
+            if (telegramBtn) {
+                // Замените 'YOUR_BOT_USERNAME' на реальный username вашего бота
+                const botUsername = 'YOUR_BOT_USERNAME'; // ИЗМЕНИТЕ ЭТО
+                telegramBtn.onclick = function() {
+                    window.open(`https://t.me/${botUsername}`, '_blank');
+                };
             }
         });
     </script>
