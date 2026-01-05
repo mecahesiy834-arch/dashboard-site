@@ -37,10 +37,6 @@
             background: var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
             line-height: 1.6;
         }
         
@@ -51,10 +47,8 @@
             overflow: hidden;
             width: 100%;
             max-width: 800px;
+            margin: 20px auto;
             border: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            height: 90vh;
         }
         
         .header {
@@ -64,7 +58,6 @@
             border-bottom: 1px solid var(--border-color);
             position: relative;
             overflow: hidden;
-            flex-shrink: 0;
         }
         
         .header::before {
@@ -102,33 +95,25 @@
         
         .content {
             padding: 0;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
         }
         
         .login-form {
-            display: flex;
-            flex-direction: column;
+            display: block;
             padding: 40px 30px;
         }
         
         .dashboard {
             display: none;
-            flex: 1;
-            flex-direction: column;
-            overflow: hidden;
         }
         
         .active {
-            display: flex;
+            display: block;
             animation: fadeIn 0.5s ease;
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         .form-group {
@@ -208,8 +193,7 @@
         .chat-container {
             display: flex;
             flex-direction: column;
-            flex: 1;
-            overflow: hidden;
+            height: 500px;
         }
         
         .chat-header {
@@ -219,7 +203,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-shrink: 0;
         }
         
         .chat-header-info h3 {
@@ -286,7 +269,6 @@
             padding: 20px;
             border-top: 1px solid var(--border-color);
             background: var(--bg-card);
-            flex-shrink: 0;
         }
         
         .chat-input-wrapper {
@@ -341,7 +323,6 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
             padding: 20px;
-            flex-shrink: 0;
         }
         
         .stat-card {
@@ -376,7 +357,6 @@
         .nav-tabs {
             display: flex;
             border-bottom: 1px solid var(--border-color);
-            flex-shrink: 0;
         }
         
         .nav-tab {
@@ -413,14 +393,11 @@
         }
         
         .tab-content {
-            flex: 1;
-            overflow: hidden;
             display: none;
         }
         
         .tab-content.active {
-            display: flex;
-            flex-direction: column;
+            display: block;
         }
         
         /* Уведомления */
@@ -435,9 +412,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            position: absolute;
-            top: 5px;
-            right: 5px;
         }
         
         /* Информация о пользователе */
@@ -448,7 +422,6 @@
             padding: 20px;
             background: var(--bg-card);
             border-bottom: 1px solid var(--border-color);
-            flex-shrink: 0;
         }
         
         .user-avatar {
@@ -478,7 +451,6 @@
             text-align: center;
             padding: 20px;
             border-top: 1px solid var(--border-color);
-            flex-shrink: 0;
         }
         
         .logout-btn a {
@@ -495,7 +467,7 @@
             color: var(--text-primary);
         }
         
-        /* Telegram info - ИСПРАВЛЕННЫЙ СТИЛЬ */
+        /* Telegram info */
         .telegram-info {
             text-align: center;
             margin-bottom: 25px;
@@ -571,15 +543,15 @@
             color: var(--text-primary);
         }
         
-        /* Пустой чат - СОВСЕМ ПУСТОЙ */
+        /* Пустой чат */
         .empty-chat {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            flex: 1;
             padding: 40px;
             text-align: center;
+            height: 300px;
         }
         
         .empty-chat-icon {
@@ -601,11 +573,48 @@
             line-height: 1.5;
         }
         
+        /* Ошибки */
+        .error {
+            color: var(--danger);
+            font-size: 12px;
+            margin-top: 8px;
+            display: none;
+            padding: 8px 12px;
+            background: rgba(220, 53, 69, 0.1);
+            border-radius: 6px;
+            border: 1px solid var(--danger);
+        }
+        
+        /* Иконки */
+        .icon {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+        }
+        
+        .icon-telegram {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230088cc'%3E%3Cpath d='M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-logout {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-chat {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-stats {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M16 11V3H8v6H2v12h20V11h-6zm-6-6h4v14h-4V5zm-6 6h4v8H4v-8zm16 8h-4v-6h4v6z'/%3E%3C/svg%3E");
+        }
+        
         /* Адаптивность */
         @media (max-width: 768px) {
             .container {
-                height: 95vh;
-                max-width: 100%;
+                margin: 10px;
                 border-radius: 12px;
             }
             
@@ -639,44 +648,6 @@
                 margin-bottom: 20px;
             }
         }
-        
-        /* Иконки */
-        .icon {
-            display: inline-block;
-            width: 18px;
-            height: 18px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            vertical-align: middle;
-        }
-        
-        .icon-telegram {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230088cc'%3E%3Cpath d='M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z'/%3E%3C/svg%3E");
-        }
-        
-        .icon-logout {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z'/%3E%3C/svg%3E");
-        }
-        
-        .icon-chat {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z'/%3E%3C/svg%3E");
-        }
-        
-        .icon-stats {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M16 11V3H8v6H2v12h20V11h-6zm-6-6h4v14h-4V5zm-6 6h4v8H4v-8zm16 8h-4v-6h4v6z'/%3E%3C/svg%3E");
-        }
-        
-        /* Ошибки */
-        .error {
-            color: var(--danger);
-            font-size: 12px;
-            margin-top: 8px;
-            display: none;
-            padding: 8px 12px;
-            background: rgba(220, 53, 69, 0.1);
-            border-radius: 6px;
-            border: 1px solid var(--danger);
-        }
     </style>
 </head>
 <body>
@@ -687,7 +658,7 @@
         </div>
         
         <div class="content">
-            <!-- Форма входа - ИСПРАВЛЕНА -->
+            <!-- Форма входа -->
             <div id="loginForm" class="login-form active">
                 <div class="domain-info">
                     <p>Домен: <strong>dashboard.qpon</strong></p>
@@ -715,8 +686,6 @@
                 </div>
                 
                 <button onclick="login()" class="btn">⚡️ Войти в систему</button>
-                
-                <!-- УБРАН ДЕМО ДОСТУП -->
             </div>
             
             <!-- Дашборд -->
@@ -731,7 +700,6 @@
                             <strong>Домен:</strong> dashboard.qpon
                         </p>
                     </div>
-                    <div id="unreadBadge" class="notification-badge" style="display: none;">0</div>
                 </div>
                 
                 <!-- Навигационные табы -->
@@ -744,7 +712,7 @@
                     </button>
                 </div>
                 
-                <!-- Вкладка чата - ВСЕГДА ПУСТАЯ -->
+                <!-- Вкладка чата -->
                 <div id="chatTab" class="tab-content active">
                     <div class="chat-container">
                         <div class="chat-header">
@@ -788,7 +756,7 @@
                     </div>
                 </div>
                 
-                <!-- Вкладка статистики - ВСЕГДА НУЛИ -->
+                <!-- Вкладка статистики -->
                 <div id="statsTab" class="tab-content">
                     <div class="stats-grid">
                         <div class="stat-card">
@@ -830,12 +798,7 @@
     </div>
     
     <script>
-        // Текущий пользователь
-        let currentUser = null;
-        let chatMessages = []; // ВСЕГДА ПУСТОЙ МАССИВ
-        let refreshInterval = null;
-        
-        // Проверка учетных данных - ТОЛЬКО РЕАЛЬНЫЕ ЛОГИНЫ
+        // Проверка учетных данных
         function validateCredentials(username, password) {
             // Только реальные логины из формата op_XXXXXX
             if (username && password && username.startsWith('op_') && password.length >= 8) {
@@ -859,116 +822,7 @@
             return 'Оператор';
         }
         
-        // Форматирование времени
-        function formatTime(timestamp) {
-            const date = new Date(timestamp);
-            return date.toLocaleTimeString('ru-RU', { 
-                hour: '2-digit', 
-                minute: '2-digit',
-                hour12: false 
-            });
-        }
-        
-        // Загрузка сообщений чата - ВСЕГДА ПУСТОЙ
-        function loadChatMessages() {
-            // ОЧИЩАЕМ ВСЕ СООБЩЕНИЯ
-            chatMessages = [];
-            
-            // Очищаем localStorage
-            if (currentUser && currentUser.username) {
-                localStorage.removeItem(`chat_${currentUser.username}`);
-            }
-            
-            updateChatDisplay();
-            updateUnreadCount();
-        }
-        
-        // Обновление отображения чата - ВСЕГДА ПУСТОЙ
-        function updateChatDisplay() {
-            const chatContainer = document.getElementById('chatMessages');
-            
-            // ВСЕГДА ПОКАЗЫВАЕМ ПУСТОЙ ЧАТ
-            chatContainer.innerHTML = `
-                <div class="empty-chat">
-                    <div class="empty-chat-icon">💬</div>
-                    <h3>Чат пуст</h3>
-                    <p>Здесь будут отображаться сообщения от мамонтов.</p>
-                    <p style="margin-top: 10px; font-size: 12px; color: var(--text-muted);">
-                        Сообщения появятся после начала общения
-                    </p>
-                </div>
-            `;
-            
-            // ВСЕГДА НОЛЬ АКТИВНЫХ ДИАЛОГОВ
-            document.getElementById('activeLeadsCount').textContent = `Активные диалоги: 0`;
-        }
-        
-        // Обновление счетчика непрочитанных - ВСЕГДА НОЛЬ
-        function updateUnreadCount() {
-            const badge = document.getElementById('unreadBadge');
-            badge.style.display = 'none'; // ВСЕГДА СКРЫВАЕМ
-        }
-        
-        // Отправка сообщения
-        async function sendMessage() {
-            const messageInput = document.getElementById('messageInput');
-            const message = messageInput.value.trim();
-            
-            if (!message) {
-                showNotification('Введите сообщение!', 'warning');
-                return;
-            }
-            
-            // Очищаем поле ввода
-            messageInput.value = '';
-            
-            // Показываем уведомление (но сообщение не сохраняем)
-            showNotification('Сообщение отправлено!', 'success');
-            
-            // В реальной системе здесь будет отправка на сервер
-            console.log('Сообщение отправлено:', message);
-            
-            // Блокируем кнопку отправки
-            document.getElementById('sendButton').disabled = true;
-        }
-        
-        // Обновление чата
-        function refreshChat() {
-            // Просто обновляем отображение (всегда пустое)
-            updateChatDisplay();
-            showNotification('Чат обновлен', 'info');
-        }
-        
-        // Переключение вкладок
-        function switchTab(tabName) {
-            // Обновляем активные табы
-            document.querySelectorAll('.nav-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            
-            // Активируем выбранную вкладку
-            event.target.classList.add('active');
-            document.getElementById(tabName + 'Tab').classList.add('active');
-            
-            // Обновляем данные при переключении
-            if (tabName === 'stats') {
-                updateStats();
-            }
-        }
-        
-        // Обновление статистики - ВСЕГДА НУЛИ
-        function updateStats() {
-            // ВСЕГДА УСТАНАВЛИВАЕМ НУЛИ
-            document.getElementById('totalLeads').textContent = '0';
-            document.getElementById('activeLeads').textContent = '0';
-            document.getElementById('totalProfit').textContent = '$0';
-            document.getElementById('todayProfit').textContent = '$0';
-        }
-        
-        // Вход в систему
+        // Вход в систему - ТЕПЕРЬ РАБОТАЕТ ПРАВИЛЬНО!
         function login() {
             const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value.trim();
@@ -997,59 +851,63 @@
                 return;
             }
             
-            // Сохраняем данные пользователя
-            currentUser = {
-                username: username,
-                password: password,
-                name: generateUserName(username),
-                avatar: username.charAt(0).toUpperCase()
-            };
-            
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            
-            // Показываем панель
-            showDashboard();
-        }
-        
-        // Показ панели
-        function showDashboard() {
+            // Переключаем страницу - ВАЖНО: используем display:block/none
             document.getElementById('loginForm').classList.remove('active');
             document.getElementById('dashboard').classList.add('active');
             
             // Обновляем информацию о пользователе
-            updateUserInfo();
+            document.getElementById('userName').textContent = generateUserName(username);
+            document.getElementById('userLogin').textContent = `Логин: ${username}`;
+            document.getElementById('userAvatar').textContent = username.charAt(0).toUpperCase();
             
-            // Загружаем сообщения (всегда пустые)
-            loadChatMessages();
-            
-            // Обновляем статистику (всегда нули)
-            updateStats();
-            
-            // Включаем поле ввода
-            document.getElementById('sendButton').disabled = false;
-            
-            // Останавливаем автообновление (не нужно)
-            stopAutoRefresh();
+            // Показываем уведомление
+            showNotification('Вход выполнен успешно!', 'success');
         }
         
-        // Обновление информации о пользователе
-        function updateUserInfo() {
-            if (!currentUser) return;
+        // Отправка сообщения
+        function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
             
-            document.getElementById('userName').textContent = currentUser.name;
-            document.getElementById('userLogin').textContent = `Логин: ${currentUser.username}`;
-            document.getElementById('userAvatar').textContent = currentUser.avatar;
+            if (!message) {
+                showNotification('Введите сообщение!', 'warning');
+                return;
+            }
+            
+            // Очищаем поле ввода
+            messageInput.value = '';
+            
+            // Показываем уведомление
+            showNotification('Сообщение отправлено!', 'success');
+            
+            // Блокируем кнопку отправки
+            document.getElementById('sendButton').disabled = true;
+        }
+        
+        // Обновление чата
+        function refreshChat() {
+            showNotification('Чат обновлен', 'info');
+        }
+        
+        // Переключение вкладок
+        function switchTab(tabName) {
+            // Обновляем активные табы
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Активируем выбранную вкладку
+            event.target.classList.add('active');
+            document.getElementById(tabName + 'Tab').classList.add('active');
         }
         
         // Выход из системы
         function logout() {
             if (confirm('Вы уверены, что хотите выйти?')) {
-                currentUser = null;
-                localStorage.removeItem('currentUser');
-                
-                // Останавливаем автообновление
-                stopAutoRefresh();
-                
+                // Переключаем обратно на страницу входа
                 document.getElementById('dashboard').classList.remove('active');
                 document.getElementById('loginForm').classList.add('active');
                 
@@ -1058,18 +916,6 @@
                 document.getElementById('password').value = '';
                 
                 showNotification('Вы вышли из системы', 'info');
-            }
-        }
-        
-        // Автообновление чата - ОТКЛЮЧЕНО
-        function startAutoRefresh() {
-            // Ничего не делаем - автообновление отключено
-        }
-        
-        function stopAutoRefresh() {
-            if (refreshInterval) {
-                clearInterval(refreshInterval);
-                refreshInterval = null;
             }
         }
         
@@ -1101,21 +947,7 @@
         }
         
         // Обработчики событий
-        document.getElementById('messageInput').addEventListener('input', function() {
-            const sendButton = document.getElementById('sendButton');
-            sendButton.disabled = this.value.trim().length === 0;
-        });
-        
-        document.getElementById('messageInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                if (!this.value.trim()) return;
-                sendMessage();
-            }
-        });
-        
-        // Проверка сохраненной сессии при загрузке
-        window.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {
             // Добавляем стили для анимаций
             const style = document.createElement('style');
             style.textContent = `
@@ -1130,18 +962,7 @@
             `;
             document.head.appendChild(style);
             
-            // Проверяем авторизацию
-            const savedUser = localStorage.getItem('currentUser');
-            if (savedUser) {
-                try {
-                    currentUser = JSON.parse(savedUser);
-                    showDashboard();
-                } catch (e) {
-                    localStorage.removeItem('currentUser');
-                }
-            }
-            
-            // Добавляем обработчики Enter для формы входа
+            // Обработчик Enter для формы входа
             document.getElementById('password').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     login();
@@ -1151,6 +972,19 @@
             document.getElementById('username').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     document.getElementById('password').focus();
+                }
+            });
+            
+            // Обработчик для поля ввода сообщения
+            document.getElementById('messageInput').addEventListener('input', function() {
+                document.getElementById('sendButton').disabled = this.value.trim().length === 0;
+            });
+            
+            document.getElementById('messageInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    if (!this.value.trim()) return;
+                    sendMessage();
                 }
             });
         });
