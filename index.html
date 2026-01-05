@@ -37,20 +37,59 @@
             background: var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
-            line-height: 1.6;
+            overflow: hidden;
         }
         
+        /* Страницы */
+        .page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: transform 0.5s ease;
+        }
+        
+        .login-page {
+            z-index: 100;
+        }
+        
+        .dashboard-page {
+            transform: translateX(100%);
+            z-index: 90;
+        }
+        
+        .dashboard-page.active {
+            transform: translateX(0);
+        }
+        
+        /* Контейнер */
         .container {
             background: var(--bg-secondary);
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             overflow: hidden;
             width: 100%;
-            max-width: 800px;
-            margin: 20px auto;
+            max-width: 100%;
             border: 1px solid var(--border-color);
+            height: 100%;
         }
         
+        .login-container {
+            max-width: 800px;
+            height: auto;
+        }
+        
+        .dashboard-container {
+            border-radius: 0;
+            max-width: 100%;
+        }
+        
+        /* Шапка */
         .header {
             background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
             padding: 25px 30px;
@@ -93,27 +132,9 @@
             position: relative;
         }
         
-        .content {
-            padding: 0;
-        }
-        
+        /* Форма входа */
         .login-form {
-            display: block;
             padding: 40px 30px;
-        }
-        
-        .dashboard {
-            display: none;
-        }
-        
-        .active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
         
         .form-group {
@@ -174,26 +195,292 @@
             border-color: var(--text-secondary);
         }
         
-        .btn::before {
+        /* Telegram info */
+        .telegram-info {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 18px;
+            background: rgba(0, 136, 204, 0.08);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 136, 204, 0.2);
+        }
+        
+        .telegram-info h3 {
+            color: var(--telegram-color);
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .telegram-info p {
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--telegram-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .telegram-btn:hover {
+            background: #006699;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 136, 204, 0.25);
+        }
+        
+        .telegram-icon {
+            width: 18px;
+            height: 18px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z'/%3E%3C/svg%3E") no-repeat center;
+            background-size: contain;
+        }
+        
+        /* Доменная информация */
+        .domain-info {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .domain-info p {
+            color: var(--info);
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .domain-info strong {
+            color: var(--text-primary);
+        }
+        
+        /* Ошибки */
+        .error {
+            color: var(--danger);
+            font-size: 12px;
+            margin-top: 8px;
+            display: none;
+            padding: 8px 12px;
+            background: rgba(220, 53, 69, 0.1);
+            border-radius: 6px;
+            border: 1px solid var(--danger);
+        }
+        
+        /* ===== ДАШБОРД СТИЛИ ===== */
+        
+        /* Пользователь */
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+        
+        .user-details h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .user-details p {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        
+        /* Навигация */
+        .nav-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-card);
+        }
+        
+        .nav-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-tab:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .nav-tab.active {
+            color: var(--text-primary);
+        }
+        
+        .nav-tab.active::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transition: 0.5s;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--success);
         }
         
-        .btn:hover::before {
-            left: 100%;
-        }
-        
-        /* Стили для чата */
-        .chat-container {
+        /* Контент дашборда */
+        .dashboard-content {
+            height: calc(100vh - 200px);
             display: flex;
             flex-direction: column;
-            height: 500px;
+        }
+        
+        .tab-content {
+            flex: 1;
+            display: none;
+            overflow: hidden;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Чат */
+        .chat-container {
+            display: flex;
+            height: 100%;
+        }
+        
+        /* Список мамонтов */
+        .leads-sidebar {
+            width: 250px;
+            background: var(--bg-card);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            padding: 20px 0;
+        }
+        
+        .leads-list {
+            padding: 0 15px;
+        }
+        
+        .leads-header {
+            padding: 0 15px 15px 15px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 15px;
+        }
+        
+        .leads-header h3 {
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+        
+        .lead-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .lead-item:hover {
+            background: var(--accent-primary);
+            transform: translateX(5px);
+        }
+        
+        .lead-item.active {
+            background: var(--accent-secondary);
+            border-color: var(--info);
+        }
+        
+        .lead-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+        
+        .lead-info {
+            flex: 1;
+        }
+        
+        .lead-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 3px;
+        }
+        
+        .lead-status {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+        
+        .lead-time {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        
+        .unread-badge {
+            background: var(--danger);
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Основной чат */
+        .chat-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-secondary);
         }
         
         .chat-header {
@@ -205,14 +492,33 @@
             align-items: center;
         }
         
-        .chat-header-info h3 {
-            font-size: 18px;
-            margin-bottom: 5px;
+        .current-lead-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
         
-        .chat-header-info p {
+        .current-lead-avatar {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+        
+        .current-lead-details h3 {
+            font-size: 16px;
+            margin-bottom: 3px;
+        }
+        
+        .current-lead-details p {
             color: var(--text-secondary);
-            font-size: 13px;
+            font-size: 12px;
         }
         
         .chat-messages {
@@ -225,7 +531,7 @@
         }
         
         .chat-message {
-            max-width: 75%;
+            max-width: 70%;
             padding: 12px 16px;
             border-radius: 15px;
             position: relative;
@@ -317,7 +623,7 @@
             transform: none;
         }
         
-        /* Статистика - ВСЕГДА НУЛИ */
+        /* Статистика */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -331,12 +637,6 @@
             border-radius: 12px;
             text-align: center;
             border: 1px solid var(--border-color);
-            transition: transform 0.3s ease;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--text-secondary);
         }
         
         .stat-card h3 {
@@ -353,205 +653,14 @@
             text-transform: uppercase;
         }
         
-        /* Навигация */
-        .nav-tabs {
-            display: flex;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .nav-tab {
-            flex: 1;
-            padding: 15px;
-            text-align: center;
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .nav-tab:hover {
-            color: var(--text-primary);
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
-        .nav-tab.active {
-            color: var(--text-primary);
-        }
-        
-        .nav-tab.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--success);
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        /* Уведомления */
-        .notification-badge {
-            background: var(--danger);
-            color: white;
-            font-size: 11px;
-            font-weight: bold;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        /* Информация о пользователе */
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 20px;
-            background: var(--bg-card);
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .user-avatar {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            font-weight: bold;
-            color: var(--text-primary);
-        }
-        
-        .user-details h3 {
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
-        
-        .user-details p {
-            color: var(--text-secondary);
-            font-size: 13px;
-        }
-        
-        .logout-btn {
-            text-align: center;
-            padding: 20px;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .logout-btn a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .logout-btn a:hover {
-            color: var(--text-primary);
-        }
-        
-        /* Telegram info */
-        .telegram-info {
-            text-align: center;
-            margin-bottom: 25px;
-            padding: 18px;
-            background: rgba(0, 136, 204, 0.08);
-            border-radius: 10px;
-            border: 1px solid rgba(0, 136, 204, 0.2);
-        }
-        
-        .telegram-info h3 {
-            color: var(--telegram-color);
-            font-size: 16px;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        
-        .telegram-info p {
-            color: var(--text-secondary);
-            font-size: 13px;
-            margin-bottom: 12px;
-            line-height: 1.4;
-        }
-        
-        .telegram-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--telegram-color);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        
-        .telegram-btn:hover {
-            background: #006699;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 136, 204, 0.25);
-        }
-        
-        .telegram-icon {
-            width: 18px;
-            height: 18px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z'/%3E%3C/svg%3E") no-repeat center;
-            background-size: contain;
-        }
-        
-        /* Доменная информация */
-        .domain-info {
-            text-align: center;
-            margin-bottom: 20px;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .domain-info p {
-            color: var(--info);
-            font-size: 13px;
-            font-weight: 600;
-        }
-        
-        .domain-info strong {
-            color: var(--text-primary);
-        }
-        
         /* Пустой чат */
         .empty-chat {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 40px;
+            height: 400px;
             text-align: center;
-            height: 300px;
         }
         
         .empty-chat-icon {
@@ -573,16 +682,26 @@
             line-height: 1.5;
         }
         
-        /* Ошибки */
-        .error {
-            color: var(--danger);
-            font-size: 12px;
-            margin-top: 8px;
-            display: none;
-            padding: 8px 12px;
-            background: rgba(220, 53, 69, 0.1);
-            border-radius: 6px;
-            border: 1px solid var(--danger);
+        /* Кнопка выхода */
+        .logout-btn {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-card);
+        }
+        
+        .logout-btn a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logout-btn a:hover {
+            color: var(--text-primary);
         }
         
         /* Иконки */
@@ -647,111 +766,146 @@
                 padding: 15px;
                 margin-bottom: 20px;
             }
+            
+            .leads-sidebar {
+                width: 200px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>⚡️ INFINITY DASHBOARD</h1>
-            <p>Панель управления</p>
-        </div>
-        
-        <div class="content">
-            <!-- Форма входа -->
-            <div id="loginForm" class="login-form active">
-                <div class="domain-info">
-                    <p>Домен: <strong>dashboard.qpon</strong></p>
-                </div>
-                
-                <div class="telegram-info">
-                    <h3><i class="icon icon-telegram"></i> Получите доступ в боте</h3>
-                    <p>Для получения логина и пароля обратитесь в Telegram-бота Infinity System.</p>
-                    <button onclick="window.open('https://t.me/InfinityPanelBot', '_blank')" class="telegram-btn">
-                        <div class="telegram-icon"></div>
-                        <span>Перейти в бот</span>
-                    </button>
-                </div>
-                
-                <div class="form-group">
-                    <label for="username">Логин</label>
-                    <input type="text" id="username" placeholder="Введите логин (формат: op_123456)" autocomplete="username">
-                    <div id="usernameError" class="error">Неверный логин</div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Пароль</label>
-                    <input type="password" id="password" placeholder="Введите пароль (12 символов)" autocomplete="current-password">
-                    <div id="passwordError" class="error">Неверный пароль</div>
-                </div>
-                
-                <button onclick="login()" class="btn">⚡️ Войти в систему</button>
+    <!-- Страница входа -->
+    <div class="page login-page">
+        <div class="container login-container">
+            <div class="header">
+                <h1>⚡️ INFINITY DASHBOARD</h1>
+                <p>Панель управления</p>
             </div>
             
-            <!-- Дашборд -->
-            <div id="dashboard" class="dashboard">
-                <!-- Информация о пользователе -->
-                <div class="user-info">
-                    <div class="user-avatar" id="userAvatar">A</div>
-                    <div class="user-details">
-                        <h3 id="userName">Оператор</h3>
-                        <p id="userLogin">Логин: loading...</p>
-                        <p id="userDomain" style="font-size: 12px; color: var(--info); margin-top: 2px;">
-                            <strong>Домен:</strong> dashboard.qpon
-                        </p>
+            <div class="content">
+                <div class="login-form">
+                    <div class="domain-info">
+                        <p>Домен: <strong>dashboard.qpon</strong></p>
                     </div>
+                    
+                    <div class="telegram-info">
+                        <h3><i class="icon icon-telegram"></i> Получите доступ в боте</h3>
+                        <p>Для получения логина и пароля обратитесь в Telegram-бота Infinity System.</p>
+                        <button onclick="window.open('https://t.me/InfinityPanelBot', '_blank')" class="telegram-btn">
+                            <div class="telegram-icon"></div>
+                            <span>Перейти в бот</span>
+                        </button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="username">Логин</label>
+                        <input type="text" id="username" placeholder="Введите логин (формат: op_123456)" autocomplete="username">
+                        <div id="usernameError" class="error">Неверный логин</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <input type="password" id="password" placeholder="Введите пароль (12 символов)" autocomplete="current-password">
+                        <div id="passwordError" class="error">Неверный пароль</div>
+                    </div>
+                    
+                    <button onclick="login()" class="btn">⚡️ Войти в систему</button>
                 </div>
-                
-                <!-- Навигационные табы -->
-                <div class="nav-tabs">
-                    <button class="nav-tab active" onclick="switchTab('chat')">
-                        <i class="icon icon-chat"></i> Чат с мамонтами
-                    </button>
-                    <button class="nav-tab" onclick="switchTab('stats')">
-                        <i class="icon icon-stats"></i> Статистика
-                    </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Страница панели управления -->
+    <div class="page dashboard-page">
+        <div class="container dashboard-container">
+            <div class="header">
+                <h1>⚡️ INFINITY DASHBOARD</h1>
+                <p>Панель управления мамонтами</p>
+            </div>
+            
+            <!-- Информация о пользователе -->
+            <div class="user-info">
+                <div class="user-avatar" id="userAvatar">A</div>
+                <div class="user-details">
+                    <h3 id="userName">Оператор</h3>
+                    <p id="userLogin">Логин: loading...</p>
+                    <p id="userDomain" style="font-size: 12px; color: var(--info); margin-top: 2px;">
+                        <strong>Домен:</strong> dashboard.qpon
+                    </p>
                 </div>
-                
+            </div>
+            
+            <!-- Навигационные табы -->
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="switchTab('chat')">
+                    <i class="icon icon-chat"></i> Чат с мамонтами
+                </button>
+                <button class="nav-tab" onclick="switchTab('stats')">
+                    <i class="icon icon-stats"></i> Статистика
+                </button>
+            </div>
+            
+            <!-- Контент дашборда -->
+            <div class="dashboard-content">
                 <!-- Вкладка чата -->
                 <div id="chatTab" class="tab-content active">
                     <div class="chat-container">
-                        <div class="chat-header">
-                            <div class="chat-header-info">
-                                <h3>💬 Чат с мамонтами</h3>
-                                <p id="activeLeadsCount">Активные диалоги: 0</p>
+                        <!-- Список мамонтов -->
+                        <div class="leads-sidebar">
+                            <div class="leads-header">
+                                <h3>Мои мамонты</h3>
                             </div>
-                            <button onclick="refreshChat()" style="background: var(--info); color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px;">
-                                Обновить
-                            </button>
+                            <div class="leads-list" id="leadsList">
+                                <div class="empty-chat">
+                                    <div class="empty-chat-icon">👤</div>
+                                    <h3>Нет мамонтов</h3>
+                                    <p>Мамонты появятся здесь после начала общения</p>
+                                </div>
+                            </div>
                         </div>
                         
-                        <!-- ВСЕГДА ПУСТОЙ ЧАТ -->
-                        <div class="chat-messages" id="chatMessages">
-                            <div class="empty-chat">
-                                <div class="empty-chat-icon">💬</div>
-                                <h3>Чат пуст</h3>
-                                <p>Здесь будут отображаться сообщения от мамонтов.</p>
-                                <p style="margin-top: 10px; font-size: 12px; color: var(--text-muted);">
-                                    Сообщения появятся после начала общения
+                        <!-- Основной чат -->
+                        <div class="chat-main">
+                            <div class="chat-header">
+                                <div class="current-lead-info" id="currentLeadInfo" style="display: none;">
+                                    <div class="current-lead-avatar" id="currentLeadAvatar">?</div>
+                                    <div class="current-lead-details">
+                                        <h3 id="currentLeadName">Мамонт</h3>
+                                        <p id="currentLeadStatus">Статус: онлайн</p>
+                                    </div>
+                                </div>
+                                <div id="noLeadSelected" style="text-align: center; width: 100%;">
+                                    <h3>💬 Выберите мамонта для общения</h3>
+                                    <p style="color: var(--text-secondary); font-size: 14px;">Выберите мамонта из списка слева для начала диалога</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Сообщения чата -->
+                            <div class="chat-messages" id="chatMessages">
+                                <div class="empty-chat">
+                                    <div class="empty-chat-icon">💬</div>
+                                    <h3>Выберите мамонта</h3>
+                                    <p>Выберите мамонта из списка слева для просмотра диалога</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Поле ввода -->
+                            <div class="chat-input-container" id="chatInputContainer" style="display: none;">
+                                <div class="chat-input-wrapper">
+                                    <textarea 
+                                        id="messageInput" 
+                                        class="chat-input" 
+                                        placeholder="Введите сообщение для мамонта..." 
+                                        rows="2"
+                                    ></textarea>
+                                    <button id="sendButton" class="send-btn" onclick="sendMessage()" disabled>
+                                        Отправить
+                                    </button>
+                                </div>
+                                <p style="font-size: 11px; color: var(--text-muted); margin-top: 8px; text-align: center;">
+                                    Сообщения отправляются в режиме реального времени
                                 </p>
                             </div>
-                        </div>
-                        
-                        <div class="chat-input-container">
-                            <div class="chat-input-wrapper">
-                                <textarea 
-                                    id="messageInput" 
-                                    class="chat-input" 
-                                    placeholder="Введите сообщение для мамонта..." 
-                                    rows="2"
-                                ></textarea>
-                                <button id="sendButton" class="send-btn" onclick="sendMessage()" disabled>
-                                    Отправить
-                                </button>
-                            </div>
-                            <p style="font-size: 11px; color: var(--text-muted); margin-top: 8px; text-align: center;">
-                                Сообщения отправляются в режиме реального времени
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -785,19 +939,24 @@
                         </p>
                     </div>
                 </div>
-                
-                <!-- Кнопка выхода -->
-                <div class="logout-btn">
-                    <a href="#" onclick="logout()">
-                        <i class="icon icon-logout"></i>
-                        <span>Выйти из системы</span>
-                    </a>
-                </div>
+            </div>
+            
+            <!-- Кнопка выхода -->
+            <div class="logout-btn">
+                <a href="#" onclick="logout()">
+                    <i class="icon icon-logout"></i>
+                    <span>Выйти из системы</span>
+                </a>
             </div>
         </div>
     </div>
     
     <script>
+        // Текущий пользователь
+        let currentUser = null;
+        let currentLead = null;
+        let leads = []; // Список мамонтов
+        
         // Проверка учетных данных
         function validateCredentials(username, password) {
             // Только реальные логины из формата op_XXXXXX
@@ -822,7 +981,7 @@
             return 'Оператор';
         }
         
-        // Вход в систему - ТЕПЕРЬ РАБОТАЕТ ПРАВИЛЬНО!
+        // Вход в систему
         function login() {
             const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value.trim();
@@ -851,17 +1010,108 @@
                 return;
             }
             
-            // Переключаем страницу - ВАЖНО: используем display:block/none
-            document.getElementById('loginForm').classList.remove('active');
-            document.getElementById('dashboard').classList.add('active');
+            // Сохраняем пользователя
+            currentUser = {
+                username: username,
+                name: generateUserName(username),
+                avatar: username.charAt(0).toUpperCase()
+            };
             
             // Обновляем информацию о пользователе
-            document.getElementById('userName').textContent = generateUserName(username);
-            document.getElementById('userLogin').textContent = `Логин: ${username}`;
-            document.getElementById('userAvatar').textContent = username.charAt(0).toUpperCase();
+            document.getElementById('userName').textContent = currentUser.name;
+            document.getElementById('userLogin').textContent = `Логин: ${currentUser.username}`;
+            document.getElementById('userAvatar').textContent = currentUser.avatar;
+            
+            // ПЕРЕКЛЮЧАЕМ СТРАНИЦУ
+            document.querySelector('.login-page').style.display = 'none';
+            document.querySelector('.dashboard-page').classList.add('active');
+            
+            // Загружаем тестовых мамонтов (пустой список)
+            loadLeads();
             
             // Показываем уведомление
             showNotification('Вход выполнен успешно!', 'success');
+        }
+        
+        // Загрузка списка мамонтов
+        function loadLeads() {
+            // В реальной системе здесь будет запрос к API
+            // Для демо - пустой список
+            leads = [];
+            
+            updateLeadsList();
+        }
+        
+        // Обновление списка мамонтов
+        function updateLeadsList() {
+            const leadsList = document.getElementById('leadsList');
+            
+            if (leads.length === 0) {
+                leadsList.innerHTML = `
+                    <div class="empty-chat">
+                        <div class="empty-chat-icon">👤</div>
+                        <h3>Нет мамонтов</h3>
+                        <p>Мамонты появятся здесь после начала общения</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Очищаем список
+            leadsList.innerHTML = '';
+            
+            // Добавляем мамонтов
+            leads.forEach(lead => {
+                const leadElement = document.createElement('div');
+                leadElement.className = `lead-item ${currentLead && currentLead.id === lead.id ? 'active' : ''}`;
+                leadElement.onclick = () => selectLead(lead);
+                
+                leadElement.innerHTML = `
+                    <div class="lead-avatar">${lead.name.charAt(0)}</div>
+                    <div class="lead-info">
+                        <div class="lead-name">${lead.name}</div>
+                        <div class="lead-status">${lead.status}</div>
+                    </div>
+                    ${lead.unread > 0 ? `<div class="unread-badge">${lead.unread}</div>` : ''}
+                    <div class="lead-time">${lead.time}</div>
+                `;
+                
+                leadsList.appendChild(leadElement);
+            });
+        }
+        
+        // Выбор мамонта
+        function selectLead(lead) {
+            currentLead = lead;
+            updateLeadsList();
+            
+            // Показываем информацию о выбранном мамонте
+            document.getElementById('currentLeadInfo').style.display = 'flex';
+            document.getElementById('noLeadSelected').style.display = 'none';
+            document.getElementById('currentLeadName').textContent = lead.name;
+            document.getElementById('currentLeadAvatar').textContent = lead.name.charAt(0);
+            document.getElementById('currentLeadStatus').textContent = `Статус: ${lead.status}`;
+            
+            // Показываем поле ввода
+            document.getElementById('chatInputContainer').style.display = 'block';
+            
+            // Загружаем сообщения
+            loadMessages(lead.id);
+        }
+        
+        // Загрузка сообщений
+        function loadMessages(leadId) {
+            const chatMessages = document.getElementById('chatMessages');
+            
+            // В реальной системе здесь будет запрос к API
+            // Для демо - пустой чат
+            chatMessages.innerHTML = `
+                <div class="empty-chat">
+                    <div class="empty-chat-icon">💬</div>
+                    <h3>Нет сообщений</h3>
+                    <p>Начните общение с этим мамонтом</p>
+                </div>
+            `;
         }
         
         // Отправка сообщения
@@ -880,13 +1130,7 @@
             // Показываем уведомление
             showNotification('Сообщение отправлено!', 'success');
             
-            // Блокируем кнопку отправки
-            document.getElementById('sendButton').disabled = true;
-        }
-        
-        // Обновление чата
-        function refreshChat() {
-            showNotification('Чат обновлен', 'info');
+            console.log('Сообщение отправлено мамонту:', currentLead?.name, 'Текст:', message);
         }
         
         // Переключение вкладок
@@ -902,18 +1146,37 @@
             // Активируем выбранную вкладку
             event.target.classList.add('active');
             document.getElementById(tabName + 'Tab').classList.add('active');
+            
+            // Обновляем статистику при переключении
+            if (tabName === 'stats') {
+                updateStats();
+            }
+        }
+        
+        // Обновление статистики
+        function updateStats() {
+            // Всегда нули
+            document.getElementById('totalLeads').textContent = '0';
+            document.getElementById('activeLeads').textContent = '0';
+            document.getElementById('totalProfit').textContent = '$0';
+            document.getElementById('todayProfit').textContent = '$0';
         }
         
         // Выход из системы
         function logout() {
             if (confirm('Вы уверены, что хотите выйти?')) {
-                // Переключаем обратно на страницу входа
-                document.getElementById('dashboard').classList.remove('active');
-                document.getElementById('loginForm').classList.add('active');
+                // ПЕРЕКЛЮЧАЕМ СТРАНИЦУ
+                document.querySelector('.dashboard-page').classList.remove('active');
+                document.querySelector('.login-page').style.display = 'flex';
                 
-                // Очищаем поля
+                // Очищаем поля ввода
                 document.getElementById('username').value = '';
                 document.getElementById('password').value = '';
+                
+                // Сбрасываем состояние
+                currentUser = null;
+                currentLead = null;
+                leads = [];
                 
                 showNotification('Вы вышли из системы', 'info');
             }
@@ -962,7 +1225,29 @@
             `;
             document.head.appendChild(style);
             
-            // Обработчик Enter для формы входа
+            // Проверяем авторизацию
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                try {
+                    currentUser = JSON.parse(savedUser);
+                    
+                    // Обновляем информацию о пользователе
+                    document.getElementById('userName').textContent = currentUser.name;
+                    document.getElementById('userLogin').textContent = `Логин: ${currentUser.username}`;
+                    document.getElementById('userAvatar').textContent = currentUser.avatar;
+                    
+                    // Показываем панель
+                    document.querySelector('.login-page').style.display = 'none';
+                    document.querySelector('.dashboard-page').classList.add('active');
+                    
+                    // Загружаем данные
+                    loadLeads();
+                } catch (e) {
+                    localStorage.removeItem('currentUser');
+                }
+            }
+            
+            // Добавляем обработчики Enter для формы входа
             document.getElementById('password').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     login();
@@ -975,18 +1260,23 @@
                 }
             });
             
-            // Обработчик для поля ввода сообщения
-            document.getElementById('messageInput').addEventListener('input', function() {
-                document.getElementById('sendButton').disabled = this.value.trim().length === 0;
-            });
+            // Активация кнопки отправки при вводе текста
+            const messageInput = document.getElementById('messageInput');
+            const sendButton = document.getElementById('sendButton');
             
-            document.getElementById('messageInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
-                    if (!this.value.trim()) return;
-                    sendMessage();
-                }
-            });
+            if (messageInput && sendButton) {
+                messageInput.addEventListener('input', function() {
+                    sendButton.disabled = this.value.trim().length === 0;
+                });
+                
+                messageInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        if (!this.value.trim()) return;
+                        sendMessage();
+                    }
+                });
+            }
         });
     </script>
 </body>
